@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from assume_role import AssumeRole
+from command_executor import CommandExecutor
 from command_line_args import CommandLineArgs
 from data_models import AssumeRoleArgs, AWSCredentials
 from environment_variable import EnvironmentVariable
@@ -13,13 +14,13 @@ if __name__ == '__main__':
     cli_args = CommandLineArgs().get_cli_args()
 
     assume_role_args = AssumeRoleArgs(role_arn=cli_args.role_arn, role_session_name=cli_args.role_session_name)
-    # aws_credentials = AssumeRole().assume_role(assume_role_args)
+    aws_credentials = AssumeRole().assume_role(assume_role_args)
 
     # temp for testing
-    aws_credentials = AWSCredentials(access_key_id=assume_role_response['Credentials']['AccessKeyId'],
-                                     secret_access_key=assume_role_response['Credentials']['SecretAccessKey'],
-                                     session_token=assume_role_response['Credentials']['SessionToken'],
-                                     expiration=assume_role_response['Credentials']['Expiration'].isoformat())
+    # aws_credentials = AWSCredentials(access_key_id=assume_role_response['Credentials']['AccessKeyId'],
+    #                                  secret_access_key=assume_role_response['Credentials']['SecretAccessKey'],
+    #                                  session_token=assume_role_response['Credentials']['SessionToken'],
+    #                                  expiration=assume_role_response['Credentials']['Expiration'].isoformat())
     # temp for testing
 
     if cli_args.command is None:
@@ -37,3 +38,5 @@ if __name__ == '__main__':
         print(command_to_eval)
     else:
         env_var_with_aws_credentials = EnvironmentVariable.get_env_var_with_aws_credentials(aws_credentials)
+
+        CommandExecutor().execute(cli_args.command, env_var_with_aws_credentials)

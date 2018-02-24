@@ -18,7 +18,7 @@ class EnvironmentVariable(object):
         export_session_token =\
             f'export {EnvironmentVariable.SESSION_TOKEN_KEY}="{aws_credentials.session_token}"'
         export_expiration =\
-            f'export {EnvironmentVariable.SESSION_TOKEN_EXPIRATION_KEY}="{aws_credentials.expiration}"'
+            f'export {EnvironmentVariable.SESSION_TOKEN_EXPIRATION_KEY}="{aws_credentials.expiration.isoformat()}"'
 
         command =\
             f'eval "{export_access_key_id}; {export_secret_access_key}; {export_session_token}; {export_expiration}"'
@@ -32,6 +32,6 @@ class EnvironmentVariable(object):
         env_var_copy[EnvironmentVariable.ACCESS_KEY_ID_KEY] = aws_credentials.access_key_id
         env_var_copy[EnvironmentVariable.SECRET_ACCESS_KEY_KEY] = aws_credentials.secret_access_key
         env_var_copy[EnvironmentVariable.SESSION_TOKEN_KEY] = aws_credentials.session_token
-        env_var_copy[EnvironmentVariable.SESSION_TOKEN_EXPIRATION_KEY] = aws_credentials.expiration
+        env_var_copy[EnvironmentVariable.SESSION_TOKEN_EXPIRATION_KEY] = aws_credentials.expiration.isoformat()
 
         return env_var_copy
