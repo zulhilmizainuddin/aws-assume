@@ -7,7 +7,7 @@ from data_models import AssumeRoleArgs, AWSCredentials
 from environment_variable import EnvironmentVariable
 
 # temp for testing
-from test.fixture.response import assume_role_response
+# from test.fixture.response import assume_role_response
 # temp for testing
 
 if __name__ == '__main__':
