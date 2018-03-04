@@ -1,8 +1,23 @@
-from collections import namedtuple
+from typing import NamedTuple
 
 
-AssumeRoleArgs = namedtuple('AssumeRoleArgs', 'role_arn role_session_name')
+class AssumeRoleArgs(NamedTuple):
+    role_arn: str
+    role_session_name: str
 
-AWSAssumedRoleUser = namedtuple('AWSAssumedRoleUser', 'assumed_role_id arn')
-AWSCredentials = namedtuple('AWSCredentials', 'access_key_id secret_access_key session_token expiration')
-AWSAssumedRoleResponse = namedtuple('AWSAssumedRoleResponse', 'assumed_role_user credentials')
+
+class AssumedRoleUser(NamedTuple):
+    assumed_role_id: str
+    arn: str
+
+
+class Credentials(NamedTuple):
+    access_key_id: str
+    secret_access_key: str
+    session_token: str
+    expiration: None
+
+
+class AssumedRoleResponse(NamedTuple):
+    assumed_role_user: AssumedRoleUser
+    credentials: Credentials
