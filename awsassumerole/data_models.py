@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import NamedTuple
 
 
@@ -15,7 +16,7 @@ class Credentials(NamedTuple):
     access_key_id: str
     secret_access_key: str
     session_token: str
-    expiration: None
+    expiration: datetime
 
 
 class AssumedRoleResponse(NamedTuple):
