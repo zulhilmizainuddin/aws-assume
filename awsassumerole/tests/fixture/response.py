@@ -23,7 +23,7 @@ assume_role_response = {
     },
     'AssumedRoleUser': {
         'AssumedRoleId': 'AROAJDZWOM3D72FCH3NLI:role-session-name',
-        'Arn': 'arn:aws:sts::account-id-here:assumed-role/assume_role_test/role-session-name'
+        'Arn': 'arn:aws:sts::123456789012:assumed-role/role-name/role-session-name'
     },
     'Credentials': {
         'AccessKeyId': 'ASIAJJVQX43FAN6HSXDQ',
