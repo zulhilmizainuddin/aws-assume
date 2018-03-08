@@ -5,7 +5,7 @@ import re
 
 
 class CredentialsCache(object):
-    cache_directory = '{}/.awsassume/cache'.format(os.path.expanduser('~'))
+    cache_directory = f'{os.path.expanduser("~")}/.awsassume/cache'
 
     def __init__(self):
         try:
@@ -39,7 +39,7 @@ class CredentialsCache(object):
             raise
 
     def get_cache_full_path(self, assume_role_args):
-        full_path = '{}/{}'.format(CredentialsCache.cache_directory, self.get_cache_name(assume_role_args))
+        full_path = f'{CredentialsCache.cache_directory}/{self.get_cache_name(assume_role_args)}'
 
         return full_path
 
@@ -49,8 +49,8 @@ class CredentialsCache(object):
         matched_arn = re.match('arn:aws:iam::([0-9]{12}):role/([0-9a-zA-Z+=,.@\-_]{1,64})', assume_role_args.role_arn)
         if matched_arn:
             role_session_name_section = assume_role_args.role_session_name
-            role_arn_section = '{}_{}'.format(matched_arn.group(1), matched_arn.group(2))
+            role_arn_section = f'{matched_arn.group(1)}_{matched_arn.group(2)}'
 
-            cache_name = '{}__{}'.format(role_session_name_section, role_arn_section)
+            cache_name = f'{role_session_name_section}__{role_arn_section}'
 
         return cache_name

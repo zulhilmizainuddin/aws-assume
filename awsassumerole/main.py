@@ -14,10 +14,10 @@ if __name__ == '__main__':
 
     if cli_args.command is None:
         print('# AWS assumed role credentials:')
-        print('# {}={}'.format(EnvironmentVariable.ACCESS_KEY_ID_KEY, aws_credentials.access_key_id))
-        print('# {}={}'.format(EnvironmentVariable.SECRET_ACCESS_KEY_KEY, aws_credentials.secret_access_key))
-        print('# {}={}'.format(EnvironmentVariable.SESSION_TOKEN_KEY, aws_credentials.session_token))
-        print('# {}={}'.format(EnvironmentVariable.SESSION_TOKEN_EXPIRATION_KEY, aws_credentials.expiration.isoformat()))
+        print(f'# {EnvironmentVariable.ACCESS_KEY_ID_KEY}={aws_credentials.access_key_id}')
+        print(f'# {EnvironmentVariable.SECRET_ACCESS_KEY_KEY}={aws_credentials.secret_access_key}')
+        print(f'# {EnvironmentVariable.SESSION_TOKEN_KEY}={aws_credentials.session_token}')
+        print(f'# {EnvironmentVariable.SESSION_TOKEN_EXPIRATION_KEY}={aws_credentials.expiration.isoformat()}')
 
         print()
 

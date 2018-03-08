@@ -16,7 +16,7 @@ class TestCredentialsCache(unittest.TestCase):
 
     def test_cache_directory_name(self):
         self.assertEqual(self.credentials_cache.cache_directory,
-                         '{}/.awsassume/cache'.format(os.path.expanduser('~')))
+                         f'{os.path.expanduser("~")}/.awsassume/cache')
 
     def test_cache_directory_exist(self):
         self.assertTrue(os.path.exists(self.credentials_cache.cache_directory))
@@ -27,17 +27,17 @@ class TestCredentialsCache(unittest.TestCase):
 
     def test_get_cache_full_path(self):
         self.assertEqual(self.credentials_cache.get_cache_full_path(self.assume_role_args),
-                         '{}/{}'.format(self.credentials_cache.cache_directory, 'sessionname__123456789012_rolename'))
+                         f'{self.credentials_cache.cache_directory}/sessionname__123456789012_rolename')
 
     def test_set_get_delete_aws_credentials(self):
         self.credentials_cache.set_aws_credentials_to_cache(self.assume_role_args, assume_role_response)
-        self.assertTrue(os.path.isfile('{}/{}'.format(self.credentials_cache.cache_directory, 'sessionname__123456789012_rolename')))
+        self.assertTrue(os.path.isfile(f'{self.credentials_cache.cache_directory}/sessionname__123456789012_rolename'))
 
         cached_assume_role_response = self.credentials_cache.get_aws_credentials_from_cache(self.assume_role_args)
         self.assertEqual(cached_assume_role_response, assume_role_response)
 
         self.credentials_cache.delete_cache_file(self.assume_role_args)
-        self.assertFalse(os.path.isfile('{}/{}'.format(self.credentials_cache.cache_directory, 'sessionname__123456789012_rolename')))
+        self.assertFalse(os.path.isfile(f'{self.credentials_cache.cache_directory}/sessionname__123456789012_rolename'))
 
 
 if __name__ == '__main__':

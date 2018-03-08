@@ -11,12 +11,12 @@ class EnvironmentVariable(object):
     @staticmethod
     def generate_command_to_export_aws_credentials(aws_credentials):
 
-        export_access_key_id = 'export {}="{}"'.format(EnvironmentVariable.ACCESS_KEY_ID_KEY, aws_credentials.access_key_id)
-        export_secret_access_key = 'export {}="{}"'.format(EnvironmentVariable.SECRET_ACCESS_KEY_KEY, aws_credentials.secret_access_key)
-        export_session_token = 'export {}="{}"'.format(EnvironmentVariable.SESSION_TOKEN_KEY, aws_credentials.session_token)
-        export_expiration = 'export {}="{}"'.format(EnvironmentVariable.SESSION_TOKEN_EXPIRATION_KEY, aws_credentials.expiration.isoformat())
+        export_access_key_id = f'export {EnvironmentVariable.ACCESS_KEY_ID_KEY}="{aws_credentials.access_key_id}"'
+        export_secret_access_key = f'export {EnvironmentVariable.SECRET_ACCESS_KEY_KEY}="{aws_credentials.secret_access_key}"'
+        export_session_token = f'export {EnvironmentVariable.SESSION_TOKEN_KEY}="{aws_credentials.session_token}"'
+        export_expiration = f'export {EnvironmentVariable.SESSION_TOKEN_EXPIRATION_KEY}="{aws_credentials.expiration.isoformat()}"'
 
-        command = '{}; {}; {}; {}'.format(export_access_key_id, export_secret_access_key, export_session_token, export_expiration)
+        command = f'{export_access_key_id}; {export_secret_access_key}; {export_session_token}; {export_expiration}'
 
         return command
 
