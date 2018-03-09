@@ -9,7 +9,7 @@ def tzlocal():
     return None
 
 
-assume_role_response = {
+assumed_role_response = {
     'ResponseMetadata': {
         'RetryAttempts': 0,
         'HTTPHeaders': {

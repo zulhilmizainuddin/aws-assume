@@ -3,48 +3,50 @@ import os
 import pickle
 import re
 
+from data_models import AssumeRoleArgs, AssumedRoleResponse
+
 
 class CredentialsCache(object):
     cache_directory = f'{os.path.expanduser("~")}/.awsassume/cache'
 
-    def __init__(self):
+    def __init__(self) -> None:
         try:
             os.makedirs(CredentialsCache.cache_directory)
         except OSError as ex:
             if ex.errno != errno.EEXIST:
                 raise
 
-    def set_aws_credentials_to_cache(self, assume_role_args, assume_role_response):
+    def set_aws_credentials_to_cache(self, assume_role_args: AssumeRoleArgs, assumed_role_response: AssumedRoleResponse) -> None:
         try:
             with open(self.get_cache_full_path(assume_role_args), 'wb') as file:
-                pickle.dump(assume_role_response, file)
+                pickle.dump(assumed_role_response, file)
         except OSError:
             raise
 
-    def get_aws_credentials_from_cache(self, assume_role_args):
-        assume_role_response = None
+    def get_aws_credentials_from_cache(self, assume_role_args: AssumeRoleArgs) -> AssumedRoleResponse:
+        assumed_role_response: AssumedRoleResponse = None
 
         try:
             with open(self.get_cache_full_path(assume_role_args), 'rb') as file:
-                assume_role_response = pickle.load(file)
+                assumed_role_response = pickle.load(file)
         except OSError:
             raise
 
-        return assume_role_response
+        return assumed_role_response
 
-    def delete_cache_file(self, assume_role_args):
+    def delete_cache_file(self, assume_role_args: AssumeRoleArgs) -> None:
         try:
             os.remove(self.get_cache_full_path(assume_role_args))
         except OSError:
             raise
 
-    def get_cache_full_path(self, assume_role_args):
+    def get_cache_full_path(self, assume_role_args: AssumeRoleArgs) -> str:
         full_path = f'{CredentialsCache.cache_directory}/{self.get_cache_name(assume_role_args)}'
 
         return full_path
 
-    def get_cache_name(self, assume_role_args):
-        cache_name = None
+    def get_cache_name(self, assume_role_args: AssumeRoleArgs) -> str:
+        cache_name: str = None
 
         matched_arn = re.match('arn:aws:iam::([0-9]{12}):role/([0-9a-zA-Z+=,.@\-_]{1,64})', assume_role_args.role_arn)
         if matched_arn:
