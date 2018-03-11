@@ -17,6 +17,7 @@ setup(name='awsassume',
       license='MIT',
       packages=['awsassume'],
       install_requires=[
-        'boto3'
+        'boto3',
+        'botocore'
       ],
       zip_safe=False)
