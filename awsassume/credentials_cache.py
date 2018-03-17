@@ -3,7 +3,8 @@ import os
 import pickle
 import re
 
-from data_models import AssumeRoleArgs, AssumedRoleResponse
+from data_models import AssumeRoleArgs
+from typing import Any, Dict
 
 
 class CredentialsCache(object):
@@ -16,15 +17,15 @@ class CredentialsCache(object):
             if ex.errno != errno.EEXIST:
                 raise
 
-    def set_aws_credentials_to_cache(self, assume_role_args: AssumeRoleArgs, assumed_role_response: AssumedRoleResponse) -> None:
+    def set_aws_credentials_to_cache(self, assume_role_args: AssumeRoleArgs, assumed_role_response: Dict[str, Any]) -> None:
         try:
             with open(self.get_cache_full_path(assume_role_args), 'wb') as file:
                 pickle.dump(assumed_role_response, file)
         except OSError:
             raise
 
-    def get_aws_credentials_from_cache(self, assume_role_args: AssumeRoleArgs) -> AssumedRoleResponse:
-        assumed_role_response: AssumedRoleResponse = None
+    def get_aws_credentials_from_cache(self, assume_role_args: AssumeRoleArgs) -> Dict[str, Any]:
+        assumed_role_response: Dict[str, Any] = None
 
         try:
             with open(self.get_cache_full_path(assume_role_args), 'rb') as file:

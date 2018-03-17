@@ -14,16 +14,7 @@ class TestCredentialsCache(unittest.TestCase):
 
         self.assume_role_args = AssumeRoleArgs(role_arn='arn:aws:iam::123456789012:role/rolename', role_session_name='sessionname')
 
-        self.assumed_role_user = AssumedRoleUser(assumed_role_id=assumed_role_response['AssumedRoleUser']['AssumedRoleId'],
-                                                 arn=assumed_role_response['AssumedRoleUser']['Arn'])
-
-        self.credentials = Credentials(access_key_id=assumed_role_response['Credentials']['AccessKeyId'],
-                                       secret_access_key=assumed_role_response['Credentials']['SecretAccessKey'],
-                                       session_token=assumed_role_response['Credentials']['SessionToken'],
-                                       expiration=assumed_role_response['Credentials']['Expiration'])
-
-        self.assumed_role_response = AssumedRoleResponse(assumed_role_user=self.assumed_role_user,
-                                                         credentials=self.credentials)
+        self.assumed_role_response = assumed_role_response
 
     def test_cache_directory_name(self):
         self.assertEqual(self.credentials_cache.cache_directory,
