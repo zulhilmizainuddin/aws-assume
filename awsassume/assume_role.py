@@ -6,7 +6,7 @@ from typing import Any, Dict
 
 class AssumeRole(SecurityTokenService):
 
-    def __init__(self, assume_role_args: AssumeRoleArgs):
+    def __init__(self, assume_role_args: AssumeRoleArgs) -> None:
         super().__init__()
 
         self.assume_role_args: AssumeRoleArgs = assume_role_args
