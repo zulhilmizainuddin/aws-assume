@@ -1,10 +1,9 @@
 import os
 import unittest
 
-from fixture.response import assumed_role_response
+from fixture.assumed_role_response import assumed_role_response
 
 from credentials_cache import CredentialsCache
-from data_models import AssumeRoleArgs
 
 
 class TestCredentialsCache(unittest.TestCase):
@@ -12,7 +11,8 @@ class TestCredentialsCache(unittest.TestCase):
     def setUp(self):
         self.credentials_cache = CredentialsCache()
 
-        self.assume_role_args = AssumeRoleArgs(role_arn='arn:aws:iam::123456789012:role/rolename', role_session_name='sessionname')
+        self.role_arn = 'arn:aws:iam::123456789012:role/rolename'
+        self.role_session_name = 'sessionname'
 
         self.assumed_role_response = assumed_role_response
 
@@ -24,21 +24,21 @@ class TestCredentialsCache(unittest.TestCase):
         self.assertTrue(os.path.exists(self.credentials_cache.cache_directory))
 
     def test_get_cache_name(self):
-        self.assertEqual(self.credentials_cache.get_cache_name(self.assume_role_args),
+        self.assertEqual(self.credentials_cache.get_cache_name(self.role_arn, self.role_session_name),
                          'sessionname__123456789012_rolename')
 
     def test_get_cache_full_path(self):
-        self.assertEqual(self.credentials_cache.get_cache_full_path(self.assume_role_args),
+        self.assertEqual(self.credentials_cache.get_cache_full_path(self.role_arn, self.role_session_name),
                          f'{self.credentials_cache.cache_directory}/sessionname__123456789012_rolename')
 
     def test_set_get_delete_aws_credentials(self):
-        self.credentials_cache.set_aws_credentials_to_cache(self.assume_role_args, self.assumed_role_response)
+        self.credentials_cache.set_credentials_to_cache(self.role_arn, self.role_session_name, self.assumed_role_response)
         self.assertTrue(os.path.isfile(f'{self.credentials_cache.cache_directory}/sessionname__123456789012_rolename'))
 
-        cached_assumed_role_response = self.credentials_cache.get_aws_credentials_from_cache(self.assume_role_args)
+        cached_assumed_role_response = self.credentials_cache.get_credentials_from_cache(self.role_arn, self.role_session_name)
         self.assertEqual(cached_assumed_role_response, self.assumed_role_response)
 
-        self.credentials_cache.delete_cache_file(self.assume_role_args)
+        self.credentials_cache.delete_cache_file(self.role_arn, self.role_session_name)
         self.assertFalse(os.path.isfile(f'{self.credentials_cache.cache_directory}/sessionname__123456789012_rolename'))
 
 
