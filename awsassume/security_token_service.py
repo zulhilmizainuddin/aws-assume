@@ -1,7 +1,7 @@
 import boto3
 
 from abc import ABCMeta, abstractmethod
-from data_models import AssumeRoleArgs, AssumedRoleResponse
+from data_models import Credentials
 
 
 class SecurityTokenService(object):
@@ -11,5 +11,5 @@ class SecurityTokenService(object):
         self.client = boto3.client('sts')
 
     @abstractmethod
-    def assume_role(self, assume_role_args: AssumeRoleArgs) -> AssumedRoleResponse:
+    def assume_role(self) -> Credentials:
         pass
