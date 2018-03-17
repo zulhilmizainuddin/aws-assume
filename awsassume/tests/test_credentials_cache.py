@@ -4,7 +4,7 @@ import unittest
 from fixture.response import assumed_role_response
 
 from credentials_cache import CredentialsCache
-from data_models import AssumeRoleArgs, AssumedRoleUser, Credentials, AssumedRoleResponse
+from data_models import AssumeRoleArgs
 
 
 class TestCredentialsCache(unittest.TestCase):
