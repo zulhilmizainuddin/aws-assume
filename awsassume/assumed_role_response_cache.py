@@ -6,24 +6,24 @@ import re
 from typing import Any, Dict
 
 
-class CredentialsCache(object):
+class AssumedRoleResponseCache(object):
     cache_directory = f'{os.path.expanduser("~")}/.awsassume/cache'
 
     def __init__(self) -> None:
         try:
-            os.makedirs(CredentialsCache.cache_directory)
+            os.makedirs(AssumedRoleResponseCache.cache_directory)
         except OSError as ex:
             if ex.errno != errno.EEXIST:
                 raise
 
-    def set_credentials_to_cache(self, role_arn: str, role_session_name: str, assumed_role_response: Dict[str, Any]) -> None:
+    def set_response_to_cache(self, role_arn: str, role_session_name: str, assumed_role_response: Dict[str, Any]) -> None:
         try:
             with open(self.get_cache_full_path(role_arn, role_session_name), 'wb') as file:
                 pickle.dump(assumed_role_response, file)
         except OSError:
             raise
 
-    def get_credentials_from_cache(self, role_arn: str, role_session_name: str) -> Dict[str, Any]:
+    def get_response_from_cache(self, role_arn: str, role_session_name: str) -> Dict[str, Any]:
         assumed_role_response: Dict[str, Any] = None
 
         try:
@@ -41,7 +41,7 @@ class CredentialsCache(object):
             raise
 
     def get_cache_full_path(self, role_arn: str, role_session_name: str) -> str:
-        full_path = f'{CredentialsCache.cache_directory}/{self.get_cache_name(role_arn, role_session_name)}'
+        full_path = f'{AssumedRoleResponseCache.cache_directory}/{self.get_cache_name(role_arn, role_session_name)}'
 
         return full_path
 
