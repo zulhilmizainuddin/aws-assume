@@ -1,23 +1,27 @@
 #!/usr/bin/env python3
 
 from assume_role import AssumeRole
+from assume_role_executor import AssumeRoleExecutor
+from assume_role_no_cache_executor import AssumeRoleNoCacheExecutor
 from command_executor import CommandExecutor
 from command_line_args import CommandLineArgs
 from data_models import AssumeRoleArgs, Credentials
 from environment_variable import EnvironmentVariable
+from security_token_service import SecurityTokenService
 
 if __name__ == '__main__':
     cli_args = CommandLineArgs().get_cli_args()
 
     assume_role_args = AssumeRoleArgs(role_arn=cli_args.role_arn, role_session_name=cli_args.role_session_name)
-    credentials: Credentials = AssumeRole(assume_role_args).assume_role()
+    security_token_service: SecurityTokenService = AssumeRole(assume_role_args)
+    assume_role_executor: AssumeRoleExecutor = AssumeRoleNoCacheExecutor(security_token_service)
+    credentials: Credentials = assume_role_executor.execute()
 
     if cli_args.command is None:
         print('# AWS assumed role credentials:')
         print(f'# {EnvironmentVariable.ACCESS_KEY_ID_KEY}={credentials.access_key_id}')
         print(f'# {EnvironmentVariable.SECRET_ACCESS_KEY_KEY}={credentials.secret_access_key}')
         print(f'# {EnvironmentVariable.SESSION_TOKEN_KEY}={credentials.session_token}')
-        print(f'# {EnvironmentVariable.SESSION_TOKEN_EXPIRATION_KEY}={credentials.expiration.isoformat()}')
 
         print()
 
