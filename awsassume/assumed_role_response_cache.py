@@ -3,7 +3,7 @@ import os
 import pickle
 import re
 
-from typing import Any, Dict
+from data_models import AssumedRoleResponse
 
 
 class AssumedRoleResponseCache(object):
@@ -16,15 +16,15 @@ class AssumedRoleResponseCache(object):
             if ex.errno != errno.EEXIST:
                 raise
 
-    def set_response_to_cache(self, role_arn: str, role_session_name: str, assumed_role_response: Dict[str, Any]) -> None:
+    def set_response_to_cache(self, role_arn: str, role_session_name: str, assumed_role_response: AssumedRoleResponse) -> None:
         try:
             with open(self.get_cache_full_path(role_arn, role_session_name), 'wb') as file:
                 pickle.dump(assumed_role_response, file)
         except OSError:
             raise
 
-    def get_response_from_cache(self, role_arn: str, role_session_name: str) -> Dict[str, Any]:
-        assumed_role_response: Dict[str, Any] = None
+    def get_response_from_cache(self, role_arn: str, role_session_name: str) -> AssumedRoleResponse:
+        assumed_role_response: AssumedRoleResponse = None
 
         try:
             with open(self.get_cache_full_path(role_arn, role_session_name), 'rb') as file:

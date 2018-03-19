@@ -1,10 +1,16 @@
 from datetime import datetime
-from typing import NamedTuple
+from typing import Any, Dict, NamedTuple
 
 
 class AssumeRoleArgs(NamedTuple):
     role_arn: str
     role_session_name: str
+
+
+AssumedRoleResponse = Dict[str, Any]
+
+
+AssumedRoleResponseCredentials = Dict[str, Any]
 
 
 class Credentials(NamedTuple):
