@@ -29,6 +29,8 @@ class AssumedRoleResponseCache(object):
         try:
             with open(self.get_cache_full_path(role_arn, role_session_name), 'rb') as file:
                 assumed_role_response = pickle.load(file)
+        except FileNotFoundError:
+            pass
         except OSError:
             raise
 
