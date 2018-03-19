@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 
 from assume_role_executor import AssumeRoleExecutor
 from assumed_role_response_cache import AssumedRoleResponseCache
@@ -22,7 +22,7 @@ class AssumeRoleCacheExecutor(AssumeRoleExecutor):
         if assumed_role_response is not None:
 
             expiration: datetime = assumed_role_response['Credentials']['Expiration']
-            if expiration is not None and datetime.now() < expiration:
+            if expiration is not None and datetime.now(timezone.utc) < expiration:
                 credentials = self.compose_credentials(assumed_role_response)
             else:
                 assumed_role_response = self.newly_request_and_cache_assume_role()

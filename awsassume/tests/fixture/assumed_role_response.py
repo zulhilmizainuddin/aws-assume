@@ -1,12 +1,6 @@
 import datetime
 
-
-def tzutc():
-    return None
-
-
-def tzlocal():
-    return None
+from dateutil.tz import tzutc
 
 
 assumed_role_response = {
