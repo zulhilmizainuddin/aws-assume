@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
+import argparse
+
 from assume_role import AssumeRole
+from assume_role_cache_executor import AssumeRoleCacheExecutor
 from assume_role_executor import AssumeRoleExecutor
 from assume_role_no_cache_executor import AssumeRoleNoCacheExecutor
 from command_executor import CommandExecutor
@@ -10,11 +13,17 @@ from environment_variable import EnvironmentVariable
 from security_token_service import SecurityTokenService
 
 if __name__ == '__main__':
-    cli_args = CommandLineArgs().get_cli_args()
+    cli_args: argparse.Namespace = CommandLineArgs().get_cli_args()
 
     assume_role_args = AssumeRoleArgs(role_arn=cli_args.role_arn, role_session_name=cli_args.role_session_name)
     security_token_service: SecurityTokenService = AssumeRole(assume_role_args)
-    assume_role_executor: AssumeRoleExecutor = AssumeRoleNoCacheExecutor(security_token_service)
+
+    assume_role_executor: AssumeRoleExecutor = None
+    if cli_args.no_cache is True:
+        assume_role_executor = AssumeRoleNoCacheExecutor(security_token_service)
+    else:
+        assume_role_executor = AssumeRoleCacheExecutor(cli_args.role_arn, cli_args.role_session_name, security_token_service)
+
     credentials: Credentials = assume_role_executor.execute()
 
     if cli_args.command is None:
