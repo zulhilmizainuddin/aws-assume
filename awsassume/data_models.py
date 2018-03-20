@@ -5,6 +5,7 @@ from typing import Any, Dict, NamedTuple
 class AssumeRoleArgs(NamedTuple):
     role_arn: str
     role_session_name: str
+    region_name: str
 
 
 AssumedRoleResponse = Dict[str, Any]
