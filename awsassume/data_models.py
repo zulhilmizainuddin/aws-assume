@@ -1,3 +1,4 @@
+from argparse import Namespace
 from datetime import datetime
 from typing import Any, Dict, NamedTuple
 
@@ -12,6 +13,9 @@ AssumedRoleResponse = Dict[str, Any]
 
 
 AssumedRoleResponseCredentials = Dict[str, Any]
+
+
+CliArgs = Namespace
 
 
 class Credentials(NamedTuple):

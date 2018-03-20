@@ -1,5 +1,7 @@
 import argparse
 
+from data_models import CliArgs
+
 
 class CommandLineArgs(object):
     def __init__(self) -> None:
@@ -11,5 +13,5 @@ class CommandLineArgs(object):
         self.parser.add_argument('--no-cache', required=False, action='store_true')
         self.parser.add_argument('--region', required=False)
 
-    def get_cli_args(self) -> argparse.Namespace:
+    def get_cli_args(self) -> CliArgs:
         return self.parser.parse_args()

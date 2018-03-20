@@ -1,19 +1,17 @@
 #!/usr/bin/env python3
 
-import argparse
-
 from assume_role import AssumeRole
 from assume_role_cache_executor import AssumeRoleCacheExecutor
 from assume_role_executor import AssumeRoleExecutor
 from assume_role_no_cache_executor import AssumeRoleNoCacheExecutor
 from command_executor import CommandExecutor
 from command_line_args import CommandLineArgs
-from data_models import AssumeRoleArgs, Credentials
+from data_models import AssumeRoleArgs, CliArgs, Credentials
 from environment_variable import EnvironmentVariable
 from security_token_service import SecurityTokenService
 
 if __name__ == '__main__':
-    cli_args: argparse.Namespace = CommandLineArgs().get_cli_args()
+    cli_args: CliArgs = CommandLineArgs().get_cli_args()
 
     assume_role_args = AssumeRoleArgs(role_arn=cli_args.role_arn, role_session_name=cli_args.role_session_name, region_name=cli_args.region)
     security_token_service: SecurityTokenService = AssumeRole(assume_role_args)
