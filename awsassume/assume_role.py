@@ -6,8 +6,8 @@ from data_models import AssumedRoleResponse
 
 class AssumeRole(SecurityTokenService):
 
-    def __init__(self, assume_role_args: AssumeRoleArgs) -> None:
-        super().__init__()
+    def __init__(self, assume_role_args: AssumeRoleArgs, region: str = None) -> None:
+        super().__init__(region)
 
         self.assume_role_args: AssumeRoleArgs = assume_role_args
 

@@ -16,7 +16,7 @@ if __name__ == '__main__':
     cli_args: argparse.Namespace = CommandLineArgs().get_cli_args()
 
     assume_role_args = AssumeRoleArgs(role_arn=cli_args.role_arn, role_session_name=cli_args.role_session_name)
-    security_token_service: SecurityTokenService = AssumeRole(assume_role_args)
+    security_token_service: SecurityTokenService = AssumeRole(assume_role_args, cli_args.region)
 
     assume_role_executor: AssumeRoleExecutor = None
     if cli_args.no_cache is True:

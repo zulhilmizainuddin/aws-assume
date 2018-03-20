@@ -9,6 +9,7 @@ class CommandLineArgs(object):
         self.parser.add_argument('--role-session-name', required=True)
         self.parser.add_argument('--command', required=False)
         self.parser.add_argument('--no-cache', required=False, action='store_true')
+        self.parser.add_argument('--region', required=False)
 
     def get_cli_args(self) -> argparse.Namespace:
         return self.parser.parse_args()
