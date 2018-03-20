@@ -26,17 +26,15 @@ if __name__ == '__main__':
 
     if cli_args.command is None:
         print('# AWS assumed role credentials:')
-        print(f'# {EnvironmentVariable.ACCESS_KEY_ID_KEY}={credentials.access_key_id}')
-        print(f'# {EnvironmentVariable.SECRET_ACCESS_KEY_KEY}={credentials.secret_access_key}')
-        print(f'# {EnvironmentVariable.SESSION_TOKEN_KEY}={credentials.session_token}')
+        EnvironmentVariable.display_credentials_to_be_exported(credentials, cli_args.region)
 
         print()
 
         print('# Execute the following command to export the AWS assumed role credentials to environment variables.')
 
-        command_to_eval = EnvironmentVariable.generate_command_to_export_aws_credentials(credentials)
+        command_to_eval = EnvironmentVariable.generate_command_to_export_credentials(credentials, cli_args.region)
         print(command_to_eval)
     else:
-        env_var_with_aws_credentials = EnvironmentVariable.get_env_var_with_aws_credentials(credentials)
+        env_var_with_credentials = EnvironmentVariable.get_env_var_with_credentials(credentials, cli_args.region)
 
-        CommandExecutor().execute(cli_args.command, env_var_with_aws_credentials)
+        CommandExecutor().execute(cli_args.command, env_var_with_credentials)
