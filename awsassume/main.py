@@ -13,7 +13,7 @@ from security_token_service import SecurityTokenService
 if __name__ == '__main__':
     cli_args: CliArgs = CommandLineArgs().get_cli_args()
 
-    assume_role_args = AssumeRoleArgs(role_arn=cli_args.role_arn, role_session_name=cli_args.role_session_name, region_name=cli_args.region)
+    assume_role_args = AssumeRoleArgs(role_arn=cli_args.role_arn, role_session_name=cli_args.role_session_name, region_name=cli_args.region_name)
     security_token_service: SecurityTokenService = AssumeRole(assume_role_args)
 
     assume_role_executor: AssumeRoleExecutor = None
@@ -26,15 +26,15 @@ if __name__ == '__main__':
 
     if cli_args.command is None:
         print('# AWS assumed role credentials:')
-        EnvironmentVariable.display_credentials_to_be_exported(credentials, cli_args.region)
+        EnvironmentVariable.display_credentials_to_be_exported(credentials, cli_args.region_name)
 
         print()
 
         print('# Execute the following command to export the AWS assumed role credentials to environment variables.')
 
-        command_to_eval = EnvironmentVariable.generate_command_to_export_credentials(credentials, cli_args.region)
+        command_to_eval = EnvironmentVariable.generate_command_to_export_credentials(credentials, cli_args.region_name)
         print(command_to_eval)
     else:
-        env_var_with_credentials = EnvironmentVariable.get_env_var_with_credentials(credentials, cli_args.region)
+        env_var_with_credentials = EnvironmentVariable.get_env_var_with_credentials(credentials, cli_args.region_name)
 
         CommandExecutor().execute(cli_args.command, env_var_with_credentials)

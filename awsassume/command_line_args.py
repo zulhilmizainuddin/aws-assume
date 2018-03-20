@@ -11,7 +11,16 @@ class CommandLineArgs(object):
         self.parser.add_argument('--role-session-name', required=True)
         self.parser.add_argument('--command', required=False)
         self.parser.add_argument('--no-cache', required=False, action='store_true')
-        self.parser.add_argument('--region', required=False)
+        self.parser.add_argument('--region-name', required=False)
 
     def get_cli_args(self) -> CliArgs:
-        return self.parser.parse_args()
+
+        parsed_cli_args: argparse.Namespace = self.parser.parse_args()
+
+        cli_args = CliArgs(role_arn=parsed_cli_args.role_arn,
+                           role_session_name=parsed_cli_args.role_session_name,
+                           command=parsed_cli_args.command,
+                           no_cache=parsed_cli_args.no_cache,
+                           region_name=parsed_cli_args.region_name)
+
+        return cli_args
