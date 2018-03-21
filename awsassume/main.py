@@ -39,4 +39,4 @@ if __name__ == '__main__':
     else:
         env_var_with_credentials = EnvironmentVariable.get_env_var_with_credentials(credentials, cli_args.region_name)
 
-        CommandExecutor().execute(cli_args.command, env_var_with_credentials)
+        CommandExecutor.execute(cli_args.command, env_var_with_credentials)

@@ -1,8 +1,10 @@
 import subprocess
 
-from typing import Dict
+from typing import Dict, List
 
 
 class CommandExecutor(object):
-    def execute(self, command: str, env_var: Dict[str, str]) -> None:
-        subprocess.Popen(command.split(' '), env=env_var)
+
+    @staticmethod
+    def execute(command: List[str], env_var: Dict[str, str]) -> None:
+        subprocess.Popen(command, env=env_var)

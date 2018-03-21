@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Dict, NamedTuple
+from typing import Any, Dict, List, NamedTuple
 
 
 class AssumeRoleArgs(NamedTuple):
@@ -17,7 +17,7 @@ AssumedRoleResponseCredentials = Dict[str, Any]
 class CliArgs(NamedTuple):
     role_arn: str
     role_session_name: str
-    command: str
+    command: List[str]
     no_cache: bool
     region_name: str
 

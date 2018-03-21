@@ -9,7 +9,7 @@ class CommandLineArgs(object):
 
         self.parser.add_argument('--role-arn', required=True)
         self.parser.add_argument('--role-session-name', required=True)
-        self.parser.add_argument('--command', required=False)
+        self.parser.add_argument('--command', required=False, nargs='*')
         self.parser.add_argument('--no-cache', required=False, action='store_true')
         self.parser.add_argument('--region-name', required=False)
 
