@@ -1,11 +1,16 @@
 from datetime import datetime
+from enum import auto, Enum
 from typing import Any, Dict, List, NamedTuple
 
 
 class AssumeRoleArgs(NamedTuple):
     role_arn: str
     role_session_name: str
-    region_name: str
+    region_name: str = None
+
+
+class AssumeRoleType(Enum):
+    DEFAULT = auto()
 
 
 AssumedRoleResponse = Dict[str, Any]
@@ -18,8 +23,8 @@ class CliArgs(NamedTuple):
     role_arn: str
     role_session_name: str
     command: List[str]
-    no_cache: bool
-    region_name: str
+    region_name: str = None
+    no_cache: bool = False
 
 
 class Credentials(NamedTuple):
@@ -27,3 +32,10 @@ class Credentials(NamedTuple):
     secret_access_key: str
     session_token: str
     expiration: datetime
+
+
+class ResponseCacheArgs(NamedTuple):
+    role_arn: str
+    role_session_name: str
+    region_name: str = None
+    assume_role_type: AssumeRoleType = AssumeRoleType.DEFAULT

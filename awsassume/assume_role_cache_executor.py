@@ -1,22 +1,22 @@
 from datetime import datetime, timezone
 
 from assume_role_executor import AssumeRoleExecutor
-from assumed_role_response_cache import AssumedRoleResponseCache
+from response_cache_adapter import ResponseCacheAdapter
 from data_models import AssumedRoleResponse, AssumedRoleResponseCredentials, Credentials
 from security_token_service import SecurityTokenService
 
 
 class AssumeRoleCacheExecutor(AssumeRoleExecutor):
 
-    def __init__(self, security_token_service: SecurityTokenService, assumed_role_response_cache: AssumedRoleResponseCache) -> None:
+    def __init__(self, security_token_service: SecurityTokenService, response_cache_adapter: ResponseCacheAdapter) -> None:
 
         self. security_token_service = security_token_service
-        self.assumed_role_response_cache = assumed_role_response_cache
+        self.response_cache_adapter = response_cache_adapter
 
     def execute(self) -> Credentials:
         credentials: Credentials = None
 
-        assumed_role_response: AssumedRoleResponse = self.assumed_role_response_cache.get_response_from_cache()
+        assumed_role_response: AssumedRoleResponse = self.response_cache_adapter.get_response_from_cache()
         if assumed_role_response is not None:
 
             expiration: datetime = assumed_role_response['Credentials']['Expiration']
@@ -34,7 +34,7 @@ class AssumeRoleCacheExecutor(AssumeRoleExecutor):
     def newly_request_and_cache_assume_role(self) -> AssumedRoleResponse:
         assumed_role_response: AssumedRoleResponse = self.security_token_service.assume_role()
 
-        self.assumed_role_response_cache.set_response_to_cache(assumed_role_response)
+        self.response_cache_adapter.set_response_to_cache(assumed_role_response)
 
         return assumed_role_response
 
