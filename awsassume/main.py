@@ -25,7 +25,7 @@ if __name__ == '__main__':
                                                 role_session_name=cli_args.role_session_name,
                                                 region_name=cli_args.region_name,
                                                 assume_role_type=AssumeRoleType.DEFAULT)
-        
+
         response_cache_adapter = ResponseCacheAdapter(response_cache_args)
         assume_role_executor = AssumeRoleCacheExecutor(security_token_service, response_cache_adapter)
 
