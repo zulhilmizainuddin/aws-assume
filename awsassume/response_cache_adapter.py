@@ -14,3 +14,6 @@ class ResponseCacheAdapter(object):
 
     def get_response_from_cache(self) -> AssumedRoleResponse:
         return self.response_cache.get_response_from_cache(self.response_cache_args)
+
+    def delete_cache_file(self) -> None:
+        self.response_cache.delete_cache_file(self.response_cache_args)
