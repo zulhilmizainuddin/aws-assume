@@ -5,8 +5,9 @@ from data_models import AssumeRoleType, ResponseCacheArgs
 from response_cache_adapter import ResponseCacheAdapter
 
 
-def setup_module():
-    response_cache_adapter(response_cache_args())
+@pytest.fixture(scope='module', autouse=True)
+def response_cache_adapter(response_cache_args):
+    return ResponseCacheAdapter(response_cache_args)
 
 
 @pytest.fixture(scope='module')
@@ -15,11 +16,6 @@ def response_cache_args():
                              'sessionname',
                              'ap-southeast-1',
                              AssumeRoleType.DEFAULT)
-
-
-@pytest.fixture(scope='module')
-def response_cache_adapter(response_cache_args):
-    return ResponseCacheAdapter(response_cache_args)
 
 
 @pytest.fixture(scope='module')

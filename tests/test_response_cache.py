@@ -5,11 +5,7 @@ from data_models import AssumeRoleType, ResponseCacheArgs
 from response_cache import ResponseCache
 
 
-def setup_module():
-    response_cache()
-
-
-@pytest.fixture(scope='module')
+@pytest.fixture(scope='module', autouse=True)
 def response_cache():
     return ResponseCache()
 
