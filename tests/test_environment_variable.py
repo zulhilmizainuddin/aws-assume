@@ -23,7 +23,7 @@ def region_name(request):
 def test_display_credentials_to_be_exported(credentials, region_name, capsys):
     EnvironmentVariable.display_credentials_to_be_exported(credentials, region_name)
 
-    out, err = capsys.readouterr()
+    out, _ = capsys.readouterr()
 
     print_access_key_id = '# AWS_ACCESS_KEY_ID=ASIAJJVQX43FAN6HSXDQ'
     print_secret_access_key = '# AWS_SECRET_ACCESS_KEY=rJWZn5j2KkjKGU/2xH6p2JE8oY85+7heKKZhPBWg'
