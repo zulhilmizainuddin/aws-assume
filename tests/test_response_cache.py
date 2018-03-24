@@ -24,7 +24,7 @@ def response_cache_args():
 
 @pytest.fixture(scope='module')
 def cache_directory():
-    return ResponseCache.cache_directory
+    return f'{os.path.expanduser("~")}/.awsassume/cache'
 
 
 @pytest.fixture(scope='module')
