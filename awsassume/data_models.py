@@ -22,7 +22,7 @@ AssumedRoleResponseCredentials = Dict[str, Any]
 class CliArgs(NamedTuple):
     role_arn: str
     role_session_name: str
-    command: List[str]
+    command: List[str] = None
     region_name: str = None
     no_cache: bool = False
 
