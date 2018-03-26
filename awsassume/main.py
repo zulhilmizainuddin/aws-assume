@@ -1,33 +1,17 @@
 #!/usr/bin/env python3
 
-from assume_role import AssumeRole
-from assume_role_cache_executor import AssumeRoleCacheExecutor
 from assume_role_executor import AssumeRoleExecutor
-from assume_role_no_cache_executor import AssumeRoleNoCacheExecutor
-from response_cache_adapter import ResponseCacheAdapter
+from assume_role_executor_factory import AssumeRoleExecutorFactory
 from command_executor import CommandExecutor
 from command_line_args import CommandLineArgs
-from data_models import AssumeRoleArgs, AssumeRoleType, CliArgs, Credentials, ResponseCacheArgs
+from data_models import CliArgs, Credentials
 from environment_variable import EnvironmentVariable
-from security_token_service import SecurityTokenService
+
 
 if __name__ == '__main__':
     cli_args: CliArgs = CommandLineArgs().get_cli_args()
 
-    assume_role_args = AssumeRoleArgs(role_arn=cli_args.role_arn, role_session_name=cli_args.role_session_name, region_name=cli_args.region_name)
-    security_token_service: SecurityTokenService = AssumeRole(assume_role_args)
-
-    assume_role_executor: AssumeRoleExecutor = None
-    if cli_args.no_cache is True:
-        assume_role_executor = AssumeRoleNoCacheExecutor(security_token_service)
-    else:
-        response_cache_args = ResponseCacheArgs(role_arn=cli_args.role_arn,
-                                                role_session_name=cli_args.role_session_name,
-                                                region_name=cli_args.region_name,
-                                                assume_role_type=AssumeRoleType.DEFAULT)
-
-        response_cache_adapter = ResponseCacheAdapter(response_cache_args)
-        assume_role_executor = AssumeRoleCacheExecutor(security_token_service, response_cache_adapter)
+    assume_role_executor: AssumeRoleExecutor = AssumeRoleExecutorFactory.get_executor(cli_args)
 
     credentials: Credentials = assume_role_executor.execute()
 
