@@ -8,7 +8,7 @@ install:
   - pip freeze
 
 before_script:
-  - export PYTHONPATH=PYTHONPATH:$(pwd)/awsassume:$(pwd)/tests
+  - export PYTHONPATH=$PYTHONPATH:$(pwd)/awsassume:$(pwd)/tests
 
 script:
   - pytest -vv
