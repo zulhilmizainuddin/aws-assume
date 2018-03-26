@@ -1,0 +1,14 @@
+language: python
+
+python:
+  - 3.6
+
+install:
+  - pip install -r requirements.txt
+
+before_script:
+  - export PYTHONPATH=PYTHONPATH:$(pwd)/awsassume:$(pwd)/tests
+
+script:
+  - pytest -vv
+  - mypy --ignore-missing-imports awsassume
