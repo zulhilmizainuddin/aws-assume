@@ -12,7 +12,7 @@ def command_line_args():
 
 
 @pytest.fixture(scope='module')
-def passed_cli_args():
+def argparse_cli_args():
     cli_args = argparse.Namespace()
     cli_args.role_arn = 'arn:aws:iam::123456789012:role/rolename'
     cli_args.role_session_name = 'sessionname'
@@ -24,7 +24,7 @@ def passed_cli_args():
 
 
 @pytest.fixture(scope='module')
-def parsed_cli_args():
+def cli_args():
     return CliArgs(role_arn='arn:aws:iam::123456789012:role/rolename',
                    role_session_name='sessionname',
                    command='aws s3 ls',
@@ -32,7 +32,7 @@ def parsed_cli_args():
                    no_cache=False)
 
 
-def test_get_cli_args(command_line_args, passed_cli_args, parsed_cli_args):
-    command_line_args.parser.parse_args = MagicMock(return_value=passed_cli_args)
+def test_get_cli_args(command_line_args, argparse_cli_args, cli_args):
+    command_line_args.parser.parse_args = MagicMock(return_value=argparse_cli_args)
 
-    assert command_line_args.get_cli_args() == parsed_cli_args
+    assert command_line_args.get_cli_args() == cli_args
