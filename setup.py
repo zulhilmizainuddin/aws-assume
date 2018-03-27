@@ -25,15 +25,15 @@ setup(name='awsassume',
       license='MIT',
       packages=['awsassume'],
       install_requires=[
-          'boto3>=1.6.16',
-          'botocore>=1.9.16',
-          'python-dateutil>=2.7.1'
+          'boto3',
+          'botocore',
+          'python-dateutil'
       ],
       tests_require=[
-          'pytest>=3.5.0'
+          'pytest'
       ],
       setup_requires=[
-          'pytest-runner>=4.2'
+          'pytest-runner'
       ],
       test_suite='tests',
       zip_safe=False)
