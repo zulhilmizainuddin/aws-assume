@@ -1,14 +1,12 @@
-#!/usr/bin/env python3
-
-from assume_role_executor import AssumeRoleExecutor
-from assume_role_executor_factory import AssumeRoleExecutorFactory
-from command_executor import CommandExecutor
-from command_line_args import CommandLineArgs
-from data_models import CliArgs, Credentials
-from environment_variable import EnvironmentVariable
+from awsassume.assume_role_executor import AssumeRoleExecutor
+from awsassume.assume_role_executor_factory import AssumeRoleExecutorFactory
+from awsassume.command_executor import CommandExecutor
+from awsassume.command_line_args import CommandLineArgs
+from awsassume.data_models import CliArgs, Credentials
+from awsassume.environment_variable import EnvironmentVariable
 
 
-if __name__ == '__main__':
+def main():
     cli_args: CliArgs = CommandLineArgs().get_cli_args()
 
     assume_role_executor: AssumeRoleExecutor = AssumeRoleExecutorFactory.get_executor(cli_args)

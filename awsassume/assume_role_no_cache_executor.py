@@ -1,6 +1,6 @@
-from assume_role_executor import AssumeRoleExecutor
-from data_models import AssumedRoleResponse, AssumedRoleResponseCredentials, Credentials
-from security_token_service import SecurityTokenService
+from awsassume.assume_role_executor import AssumeRoleExecutor
+from awsassume.data_models import AssumedRoleResponse, AssumedRoleResponseCredentials, Credentials
+from awsassume.security_token_service import SecurityTokenService
 
 
 class AssumeRoleNoCacheExecutor(AssumeRoleExecutor):

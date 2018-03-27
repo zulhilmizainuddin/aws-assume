@@ -1,9 +1,9 @@
 import pytest
 
-from assume_role_cache_executor import AssumeRoleCacheExecutor
-from assume_role_executor_factory import AssumeRoleExecutorFactory
-from assume_role_no_cache_executor import AssumeRoleNoCacheExecutor
-from data_models import CliArgs
+from awsassume.assume_role_cache_executor import AssumeRoleCacheExecutor
+from awsassume.assume_role_executor_factory import AssumeRoleExecutorFactory
+from awsassume.assume_role_no_cache_executor import AssumeRoleNoCacheExecutor
+from awsassume.data_models import CliArgs
 
 
 @pytest.fixture(scope='module', params=[True, False])

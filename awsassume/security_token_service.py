@@ -1,7 +1,8 @@
 import boto3
 
 from abc import ABC, abstractmethod
-from data_models import AssumedRoleResponse
+
+from awsassume.data_models import AssumedRoleResponse
 
 
 class SecurityTokenService(ABC):

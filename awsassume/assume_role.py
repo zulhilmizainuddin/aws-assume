@@ -1,7 +1,8 @@
 from botocore.exceptions import ClientError
-from data_models import AssumeRoleArgs
-from security_token_service import SecurityTokenService
-from data_models import AssumedRoleResponse
+
+from awsassume.data_models import AssumeRoleArgs
+from awsassume.security_token_service import SecurityTokenService
+from awsassume.data_models import AssumedRoleResponse
 
 
 class AssumeRole(SecurityTokenService):

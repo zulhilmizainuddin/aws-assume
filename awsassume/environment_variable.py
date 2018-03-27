@@ -1,7 +1,8 @@
 import os
 
-from data_models import Credentials
 from typing import Dict
+
+from awsassume.data_models import Credentials
 
 
 class EnvironmentVariable(object):

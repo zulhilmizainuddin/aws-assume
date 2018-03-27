@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
-from data_models import Credentials
+
+from awsassume.data_models import Credentials
 
 
 class AssumeRoleExecutor(ABC):

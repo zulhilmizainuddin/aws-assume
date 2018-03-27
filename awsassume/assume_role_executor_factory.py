@@ -1,10 +1,10 @@
-from assume_role import AssumeRole
-from assume_role_cache_executor import AssumeRoleCacheExecutor
-from assume_role_executor import AssumeRoleExecutor
-from assume_role_no_cache_executor import AssumeRoleNoCacheExecutor
-from data_models import AssumeRoleArgs, AssumeRoleType, CliArgs, ResponseCacheArgs
-from response_cache_adapter import ResponseCacheAdapter
-from security_token_service import SecurityTokenService
+from awsassume.assume_role import AssumeRole
+from awsassume.assume_role_cache_executor import AssumeRoleCacheExecutor
+from awsassume.assume_role_executor import AssumeRoleExecutor
+from awsassume.assume_role_no_cache_executor import AssumeRoleNoCacheExecutor
+from awsassume.data_models import AssumeRoleArgs, AssumeRoleType, CliArgs, ResponseCacheArgs
+from awsassume.response_cache_adapter import ResponseCacheAdapter
+from awsassume.security_token_service import SecurityTokenService
 
 
 class AssumeRoleExecutorFactory(object):

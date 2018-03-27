@@ -1,12 +1,13 @@
 import datetime
 import pytest
 
-from assume_role import AssumeRole
-from assume_role_cache_executor import AssumeRoleCacheExecutor
-from data_models import AssumeRoleArgs, AssumeRoleType, Credentials, ResponseCacheArgs
 from dateutil.tz import tzutc
-from response_cache_adapter import ResponseCacheAdapter
 from unittest.mock import MagicMock
+
+from awsassume.assume_role import AssumeRole
+from awsassume.assume_role_cache_executor import AssumeRoleCacheExecutor
+from awsassume.data_models import AssumeRoleArgs, AssumeRoleType, Credentials, ResponseCacheArgs
+from awsassume.response_cache_adapter import ResponseCacheAdapter
 
 
 @pytest.fixture(scope='module')

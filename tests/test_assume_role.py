@@ -1,8 +1,9 @@
 import pytest
 
-from assume_role import AssumeRole
-from data_models import AssumeRoleArgs
 from unittest.mock import MagicMock
+
+from awsassume.assume_role import AssumeRole
+from awsassume.data_models import AssumeRoleArgs
 
 
 @pytest.fixture(scope='module')

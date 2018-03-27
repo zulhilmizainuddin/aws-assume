@@ -2,9 +2,10 @@ import datetime
 import os
 import pytest
 
-from data_models import Credentials
 from dateutil.tz import tzutc
-from environment_variable import EnvironmentVariable
+
+from awsassume.data_models import Credentials
+from awsassume.environment_variable import EnvironmentVariable
 
 
 @pytest.fixture(scope='module')

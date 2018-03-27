@@ -1,6 +1,6 @@
 import argparse
 
-from data_models import CliArgs
+from awsassume.data_models import CliArgs
 
 
 class CommandLineArgs(object):

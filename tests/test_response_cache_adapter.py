@@ -1,8 +1,8 @@
 import os
 import pytest
 
-from data_models import AssumeRoleType, ResponseCacheArgs
-from response_cache_adapter import ResponseCacheAdapter
+from awsassume.data_models import AssumeRoleType, ResponseCacheArgs
+from awsassume.response_cache_adapter import ResponseCacheAdapter
 
 
 @pytest.fixture(scope='module', autouse=True)

@@ -3,7 +3,7 @@ import os
 import pickle
 import re
 
-from data_models import AssumedRoleResponse, ResponseCacheArgs
+from awsassume.data_models import AssumedRoleResponse, ResponseCacheArgs
 
 
 class ResponseCache(object):

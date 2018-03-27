@@ -1,9 +1,10 @@
 import argparse
 import pytest
 
-from command_line_args import CommandLineArgs
-from data_models import CliArgs
 from unittest.mock import MagicMock
+
+from awsassume.command_line_args import CommandLineArgs
+from awsassume.data_models import CliArgs
 
 
 @pytest.fixture(scope='module')

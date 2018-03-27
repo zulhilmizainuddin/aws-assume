@@ -1,5 +1,5 @@
-from data_models import AssumedRoleResponse, ResponseCacheArgs
-from response_cache import ResponseCache
+from awsassume.data_models import AssumedRoleResponse, ResponseCacheArgs
+from awsassume.response_cache import ResponseCache
 
 
 class ResponseCacheAdapter(object):
