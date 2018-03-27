@@ -11,5 +11,5 @@ before_script:
   - export PYTHONPATH=$PYTHONPATH:$(pwd)/awsassume:$(pwd)/tests
 
 script:
-  - pytest -vv
-  - mypy --ignore-missing-imports awsassume
+  - pytest
+  - mypy awsassume
