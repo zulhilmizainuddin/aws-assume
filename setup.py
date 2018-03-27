@@ -10,7 +10,7 @@ sys.path.append(f'{os.getcwd()}/tests')
 
 setup(name='awsassume',
       version=__version__,
-      description='Execute AWS CLI after assuming role',
+      description='Execute AWS CLI commands after assuming role',
       url='https://github.com/zulhilmizainuddin/aws-assume',
       author='Zulhilmi Mohamed Zainuddin',
       author_email='zulhilmi.zainuddin@outlook.com',
