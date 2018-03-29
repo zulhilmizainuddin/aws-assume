@@ -18,7 +18,7 @@ def argparse_cli_args():
     cli_args.role_arn = 'arn:aws:iam::123456789012:role/rolename'
     cli_args.role_session_name = 'sessionname'
     cli_args.command = 'aws s3 ls'
-    cli_args.region_name = 'ap-southeast-1'
+    cli_args.region = 'ap-southeast-1'
     cli_args.no_cache = False
 
     return cli_args
