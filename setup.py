@@ -8,9 +8,14 @@ from setuptools import setup
 sys.path.append(f'{os.getcwd()}/awsassume')
 sys.path.append(f'{os.getcwd()}/tests')
 
+readme = None
+with open('README.rst', 'r') as file:
+    readme = file.read()
+
 setup(name='awsassume',
       version=__version__,
       description='Execute AWS CLI commands after assuming role',
+      long_description=readme,
       url='https://github.com/zulhilmizainuddin/aws-assume',
       author='Zulhilmi Mohamed Zainuddin',
       author_email='zulhilmi.zainuddin@outlook.com',
