@@ -1,5 +1,12 @@
-aws-assume |Build Status| |Maintainability|
+aws-assume
 ==========
+
+.. image:: https://travis-ci.org/zulhilmizainuddin/aws-assume.svg?branch=master
+    :target: https://travis-ci.org/zulhilmizainuddin/aws-assume
+
+.. image:: https://api.codeclimate.com/v1/badges/cc17f352128d8ce24a9c/maintainability
+   :target: https://codeclimate.com/github/zulhilmizainuddin/aws-assume/maintainability
+   :alt: Maintainability
 
 Execute AWS CLI commands after assuming role
 
@@ -155,8 +162,3 @@ Upload to PyPI
 ::
 
     $ twine upload dist/*
-
-.. |Build Status| image:: https://travis-ci.org/zulhilmizainuddin/aws-assume.svg?branch=master
-   :target: https://travis-ci.org/zulhilmizainuddin/aws-assume
-.. |Maintainability| image:: https://api.codeclimate.com/v1/badges/cc17f352128d8ce24a9c/maintainability
-   :target: https://codeclimate.com/github/zulhilmizainuddin/aws-assume/maintainability
