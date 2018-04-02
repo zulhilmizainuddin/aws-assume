@@ -37,22 +37,22 @@ Usage
 ::
 
     usage: awsassume [-h] -a ROLE_ARN -n ROLE_SESSION_NAME [--no-cache]
-                     [-r REGION] [-c COMMAND [COMMAND ...]]
+                 [-r REGION] [-c ...]
 
     Execute AWS CLI commands after assuming role
 
     optional arguments:
-      -h, --help            show this help message and exit
-      --no-cache            Disable caching of the assumed role response
-      -r REGION, --region REGION
+    -h, --help            show this help message and exit
+    --no-cache            Disable caching of the assumed role response
+    -r REGION, --region REGION
                             The region to be associated with the client
-      -c COMMAND [COMMAND ...], --command COMMAND [COMMAND ...]
+    -c ..., --command ...
                             The AWS CLI command to execute after assuming role
 
     required arguments:
-      -a ROLE_ARN, --role-arn ROLE_ARN
+    -a ROLE_ARN, --role-arn ROLE_ARN
                             The ARN of the role to assume
-      -n ROLE_SESSION_NAME, --role-session-name ROLE_SESSION_NAME
+    -n ROLE_SESSION_NAME, --role-session-name ROLE_SESSION_NAME
                             An identifier for the assumed role session
 
 Caching

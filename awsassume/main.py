@@ -16,7 +16,7 @@ def main():
 
         credentials: Credentials = assume_role_executor.execute()
 
-        if cli_args.command is None:
+        if not cli_args.command:
             print('# AWS assumed role credentials:')
             EnvironmentVariable.display_credentials_to_be_exported(credentials, cli_args.region_name)
 

@@ -15,7 +15,7 @@ class CommandLineArgs(object):
 
         self.parser.add_argument('--no-cache', required=False, action='store_true', help='Disable caching of the assumed role response')
         self.parser.add_argument('-r', '--region', required=False, help='The region to be associated with the client')
-        self.parser.add_argument('-c', '--command', required=False, nargs='+', help='The AWS CLI command to execute after assuming role')
+        self.parser.add_argument('-c', '--command', required=False, nargs=argparse.REMAINDER, help='The AWS CLI command to execute after assuming role')
 
     def get_cli_args(self) -> CliArgs:
 
